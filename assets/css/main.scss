@@ -1,0 +1,117 @@
+$primary: #e0e0e0;
+$secondary: #d0d0d0;
+$headerH: 4rem;
+$listBorder: #cccccc;
+$footerH: 5rem;
+[v-cloak] {
+  display: none !important;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  font-size: 16px;
+  background-color: #f5f5f5;
+}
+a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  color: #000000;
+  &:hover {
+    color: #000000;
+    text-decoration: none;
+  }
+}
+li {
+  list-style-type: none;
+}
+.t-header {
+  position: relative;
+  height: $headerH;
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  background-color: $primary;
+  input {
+    position: relative;
+    outline: none;
+    border: none;
+    background-color: $primary;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .h-nav {
+    float: right;
+    position: relative;
+    display: inline-block;
+    height: inherit;
+    margin-right: 2rem;
+    li {
+      display: inline-block;
+      line-height: $headerH;
+      height: inherit;
+      margin: 0 1rem 0 0;
+      &:hover {
+        cursor: pointer;
+        background-color: $secondary;
+      }
+    }
+  }
+}
+
+.container {
+  position: relative;
+  padding-bottom: $footerH;
+  .list {
+    li.item {
+      text-align: center;
+      border: 1px solid $listBorder;
+      border-collapse: collapse;
+      background-color: $primary;
+      &:hover {
+        cursor: pointer;
+        background-color: $secondary;
+      }
+      a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        margin: 0.5rem auto;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.b-footer {
+  position: absolute;
+  bottom: 0;
+  margin-top: -$footerH;
+  background-color: $primary;
+  width: 100%;
+  height: $footerH;
+  padding: 0.5rem 2%;
+  text-align: center;
+  a {
+    display: inline;
+  }
+}
+
+.active {
+  background-color: $secondary;
+}
+
+@media (max-width: 460px) {
+  .t-header {
+    font-size: 1.1rem;
+    height: $headerH*9/10;
+    .h-nav {
+      margin-right: 0.3rem;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@imere/test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "config": {
+    "nuxt": {
+      "port": "8000"
+    }
+  },
+  "scripts": {
+    "dev": "nuxt"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nuxt": "^1.4.0",
+    "vue": "^2.5.16"
+  },
+  "devDependencies": {
+    "ajv": "^6.5.0",
+    "ajv-keywords": "^3.2.0",
+    "axios": "^0.18.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1"
+  }
+}

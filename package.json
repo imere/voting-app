@@ -1,5 +1,5 @@
 {
-  "name": "@imere/test",
+  "name": "@imere/voting-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,13 +9,16 @@
     }
   },
   "scripts": {
-    "dev": "nuxt"
+    "dev": "nuxt",
+    "start": "cross-env NODE_ENV=production node server.js"
   },
-  "author": "",
+  "author": "imere",
   "license": "ISC",
   "dependencies": {
-    "nuxt": "^1.4.0",
-    "vue": "^2.5.16"
+    "cross-env": "^5.1.6",
+    "highcharts": "^6.1.0",
+    "mongo": "^0.1.0",
+    "nuxt": "^1.4.0"
   },
   "devDependencies": {
     "ajv": "^6.5.0",

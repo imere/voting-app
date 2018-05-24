@@ -7,10 +7,11 @@ module.exports = {
       {hid: "description", name: "description", content: "voting system, 投票系统"}
     ],
     script: [
-      {src: "https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"},
-      {src: "https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/highcharts.js"},
+      {src: "https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"}
+      //{src: "https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/highcharts.js"},
     ],
     link: [
+      {rel: "icon", type: "image/x-icon", href: "/favicon.ico"},
       {rel: "stylesheet", href: "https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css"}
     ]
   },

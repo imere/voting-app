@@ -1,8 +1,14 @@
 <template>
 <div class="content">
 
+<!--[if lt IE 9]>
+<script src="https://img.hcharts.cn/highcharts/modules/oldie.js"></script>
+<![endif]-->
+
 <header class="t-header">
-  <input type="text" placeholder="Type To Search" v-model="filter" />
+  <div class="search">
+    <input class="searchbar" type="text" placeholder="Type To Search" v-model="filter" />
+  </div>
   <ul class="h-nav">
     <li><a v-bind:class="" href="/">Home</a></li>
     <li><a v-bind:class="" href="#">Login</a></li>
@@ -20,6 +26,7 @@
     </p>
   </div>
 </footer>
+
 </div>
 </template>
 

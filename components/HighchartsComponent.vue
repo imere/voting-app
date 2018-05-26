@@ -3,16 +3,18 @@
 </template>
 
 <script>
-import Highcharts from "highcharts/highstock"
+import Highcharts from 'highcharts/highstock'
 export default {
-  props: ["options"],
-  data(){
+  props: ['options'],
+  data () {
     return {
       chart: null
     }
   },
-  mounted(){
-    this.chart = new Highcharts.chart("chart", this.options)
+  mounted () {
+    /* eslint-disable */
+    this.chart = new Highcharts.chart('chart', this.options)
+    /* eslint-enable */
   }
 }
 </script>

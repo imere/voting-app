@@ -1,9 +1,9 @@
 export const state = () => ({
-	dt: {}
+  dt: {}
 })
 
 export const mutations = {
-	ADD_LIST(state, list){
-		state.dt = list
-	}
+  ADD_LIST (state, list) {
+    state.dt = list
+  }
 }

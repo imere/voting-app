@@ -32,15 +32,15 @@
 
 <script>
 export default {
-  data(){
+  data () {
     return {
-      filter: ""
-    };
+      filter: ''
+    }
   },
   computed: {
-    listFilter(){
-      let filter = this.filter.trim();
-      return this.data.filter(function(v){
+    listFilter () {
+      let filter = this.filter.trim()
+      return this.data.filter(function (v) {
         return v[0].indexOf(filter) !== -1
       })
     }

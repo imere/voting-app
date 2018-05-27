@@ -9,9 +9,11 @@
     }
   },
   "scripts": {
-    "dev": "nuxt build && backpack build",
+    "wdev": "nuxt build && backpack build",
     "wstart": "cross-env NODE_ENV=production node build/main.js",
-    "start": "nuxt build && nuxt start"
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "heroku-postbuild": "npm run build"
   },
   "author": "imere",
   "license": "ISC",

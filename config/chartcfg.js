@@ -3,6 +3,12 @@ module.exports = {
     plotBackgroundColor: '#f5f5f5',
     plotBorderColor: '#f5f5f5',
     type: 'pie'
+    // spacing: [0, 0, 0, 0]
+  },
+  credits: {
+    enabled: false,
+    text: '',
+    href: ''
   },
   title: {
     floating: false,
@@ -37,17 +43,16 @@ module.exports = {
     enableMouseTracking: true
   },
   tooltip: {
-    valueSuffix: '\xB0C'
+    valueSuffix: ''
   },
   legend: {
-    layout: 'vertical',
-    align: 'right',
-    verticalAlign: 'middle',
+    floating: true,
+    layout: 'horizontal',
+    align: 'center',
     borderWidth: 1
   },
   series: [
     {
-      // type: "pie",
       innerSize: '40%',
       name: '',
       data: [

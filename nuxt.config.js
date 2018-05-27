@@ -1,3 +1,5 @@
+const bodyParser = require('body-parser')
+const session = require('express-session')
 module.exports = {
   head: {
     title: 'Voting System',
@@ -15,7 +17,7 @@ module.exports = {
       {rel: 'stylesheet', href: 'https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css'}
     ]
   },
-  loading: './components/loading',
+  loading: '~/components/loading.vue',
   css: [
     {src: '~assets/css/main.scss', lang: 'scss'}
   ],
@@ -47,6 +49,16 @@ module.exports = {
     },
     routes: []
   },
+  serverMiddleware: [
+    bodyParser.json(),
+    session({
+      secret: '5b08281f4f64f54ca818a545e',
+      resave: false,
+      saveUninitialized: false,
+      cookie: { maxAge: 60000 }
+    }),
+    '~/api'
+  ],
   build: {
     vendor: ['axios'],
     extend (config, ctx) {

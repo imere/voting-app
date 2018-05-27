@@ -121,6 +121,20 @@ li {
       outline: none;
       border-radius: 5px;
     }
+    #item {
+      text-align: center;
+      * {
+        min-width: 30%;
+      }
+      input[type="text"] {
+        border-radius: 5px 0 0 5px;
+      }
+      input[type="button"] {
+        min-width: 30px;
+        min-height: 30px;
+        border-radius: 0 5px 5px 0;
+      }
+    }
   }
   #chart {
     position: relative;

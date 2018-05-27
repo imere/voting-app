@@ -1,14 +1,21 @@
 <template>
-<div id="chart" :options="options"></div>
+<div id="chart" :msg='msg'></div>
 </template>
 
 <script>
 import Highcharts from 'highcharts/highstock'
+import Options from '~/config/chartcfg.js'
 export default {
-  props: ['options'],
+  props: ['msg'],
   data () {
+    let opts = {}
+    Object.assign(opts, Options)
+    opts.series[0].data = this.msg.item.map((v, i, arr) => {
+      return { name: v.name, y: v.count }
+    })
     return {
-      chart: null
+      chart: null,
+      options: opts
     }
   },
   mounted () {

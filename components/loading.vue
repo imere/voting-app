@@ -32,5 +32,6 @@ module.exports = {
     padding-top: 200px;
     font-size: 30px;
     font-family: Helvetica, sans-serif;
+    z-index: 9999;
   }
 </style>

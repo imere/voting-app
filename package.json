@@ -9,23 +9,27 @@
     }
   },
   "scripts": {
-    "dev": "nuxt",
-    "start": "nuxt build && backpack build && cross-env NODE_ENV=production node build/main.js"
+    "dev": "nuxt build && backpack build",
+    "wstart": "cross-env NODE_ENV=production node build/main.js",
+    "start": "nuxt build && nuxt start"
   },
   "author": "imere",
   "license": "ISC",
   "dependencies": {
-    "backpack-core": "^0.7.0",
+    "axios": "^0.18.0",
     "cross-env": "^5.1.6",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "highcharts": "^6.1.0",
+    "mongodb": "^3.1.0-beta4",
     "nuxt": "^1.4.0",
     "source-map-support": "^0.5.6"
   },
   "devDependencies": {
     "ajv": "^6.5.0",
     "ajv-keywords": "^3.2.0",
-    "axios": "^0.18.0",
     "babel-eslint": "^8.2.3",
+    "backpack-core": "^0.7.0",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-loader": "^2.0.0",
@@ -34,7 +38,6 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.1.0",
-    "mongodb": "^3.0.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1"
   }

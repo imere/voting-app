@@ -1,15 +1,14 @@
 import votes from '../data/mongo.js'
-export default async function ({store, route}) {
+export default async function ({store, route, error}) {
   await new Promise((resolve, reject) => {
     votes.get({}, (err, dat) => {
       if (err) {
-        reject(console.error(err))
+        reject(error({ statusCode: 500, message: 'Data Error' }))
       }
-      resolve(store.commit('ADD_LIST', dat))
+      resolve(store.commit('SET_ROUTE', dat))
     }, {
       projection: {
-        owner: 0,
-        voteby: 0
+        _id: 1
       }
     })
   })

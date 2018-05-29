@@ -7,11 +7,16 @@
 
 <header class="t-header">
   <div class="search">
-    <input class="searchbar" type="text" placeholder="Type To Search" v-model="filter" />
+    <input class="searchbar" type="text" placeholder="Type To Search" v-model.trim="filter" />
   </div>
   <ul class="h-nav">
-    <li><a v-bind:class="" href="/">Home</a></li>
-    <li><a v-bind:class="" href="#">Login</a></li>
+    <li><a href="/">Home</a></li>
+    <li v-if="$store.state.user">
+      <a href="javascript:void(0)">{{ $store.state.user }}</a>
+    </li>
+    <li v-else>
+      <a href="javascript:void(0)">Login</a>
+    </li>
   </ul>
 </header>
 
@@ -23,6 +28,9 @@
   <div>
     <p>
       contact: <a href="mailto:838914662@qq.com">838914662@qq.com</a>
+    </p>
+    <p>
+      open-source: <a href="https://github.com/imere/voting-app">https://github.com/imere/voting-app</a>
     </p>
   </div>
 </footer>

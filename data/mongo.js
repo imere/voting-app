@@ -3,7 +3,7 @@ const mgc = require('mongodb').MongoClient
 const uri = 'mongodb://127.0.0.1:27017'
 /* eslint-disable */
 const init = () => {
-  mgc.connect(uri, function (err, client) {
+  mgc.connect(uri, { useNewUrlParser: true },function (err, client) {
     if (err) {
       return console.error(err)
     }
@@ -35,7 +35,7 @@ const init = () => {
 
 const votes = {
   get: (filter, cb, options = {}) => {
-    mgc.connect(uri, (err, client) => {
+    mgc.connect(uri, { useNewUrlParser: true }, (err, client) => {
       if (err) {
         return cb(err)
       }
@@ -47,7 +47,7 @@ const votes = {
   },
 
   ins: (filter, cb, options = {}) => {
-    mgc.connect(uri, function (err, client) {
+    mgc.connect(uri, { useNewUrlParser: true }, function (err, client) {
       if (err) {
         return cb(err)
       }
@@ -62,7 +62,7 @@ const votes = {
   },
 
   upd: (filter, update, cb, options = {}) => {
-    mgc.connect(uri, function (err, client) {
+    mgc.connect(uri, { useNewUrlParser: true }, function (err, client) {
       if (err) {
         return cb(err)
       }
@@ -77,7 +77,7 @@ const votes = {
   },
 
   del: (filter, cb, options = {}) => {
-    mgc.connect(uri, function (err, client) {
+    mgc.connect(uri, { useNewUrlParser: true }, function (err, client) {
       if (err) {
         return cb(err)
       }

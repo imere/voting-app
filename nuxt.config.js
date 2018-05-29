@@ -30,7 +30,7 @@ module.exports = {
   },
   router: {
     base: '/',
-    middleware: ['getdata'],
+    middleware: ['getroute'],
     scrollBehavior: function (to, from, savedPosition) {
       if (savedPosition) {
         return savedPosition
@@ -57,7 +57,7 @@ module.exports = {
       saveUninitialized: false,
       cookie: { maxAge: 60000 }
     }),
-    '~/api'
+    '~/router'
   ],
   build: {
     vendor: ['axios'],

@@ -54,7 +54,7 @@ module.exports = {
   series: [
     {
       innerSize: '40%',
-      name: '',
+      name: 'item',
       data: [
         ['1947-01-01', 243.1],
         ['1947-04-01', 246.3],

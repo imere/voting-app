@@ -12,15 +12,20 @@
 import PanelComponent from '~/components/panel.vue'
 import HighchartsComponent from '~/components/HighchartsComponent.vue'
 import { ObjectID } from 'mongodb'
-import votes from '../data/mongo.js'
+import votes from '~/data/mongo'
 export default {
+  head () {
+    return {
+      title: this.data.title
+    }
+  },
   components: {
     PanelComponent,
     HighchartsComponent
   },
-  validate ({ store, params }) {
+  validate ({ store, params, error }) {
     let f = false
-    store.state.dt.some((v, i, arr) => {
+    store.state.routes.some((v, i, arr) => {
       /* '_id' object to string  */
       if (v['_id'].toString() === params.id) {
         f = true
@@ -32,15 +37,15 @@ export default {
     return f
   },
   async asyncData ({ store, params, error }) {
-    let v = []
+    let dat = []
     await new Promise((resolve, reject) => {
       votes.get({
         _id: ObjectID(params.id)
-      }, (err, dat) => {
+      }, (err, data) => {
         if (err) {
-          reject(error({ message: '内部错误,请刷新重试', stasusCode: 500 }))
+          reject(error({ message: '内部错误,请刷新重试', statusCode: 500 }))
         }
-        resolve(v = dat)
+        resolve(dat = data)
       }, {
         projection: {
           owner: 0,
@@ -49,7 +54,7 @@ export default {
       })
     })
     return {
-      data: v[0]
+      data: dat[0]
     }
   },
   data () {
@@ -70,3 +75,63 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.show {
+  height: inherit;
+  position: relative;
+  text-align: right;
+  p {
+    padding: 3% 0;
+  }
+  #message {
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    padding: 3% 0;
+    overflow: hidden;
+    * {
+      min-width: 200px;
+    }
+    select {
+      margin: 0 0 10px 0;
+      outline: none;
+      border-radius: 5px;
+    }
+    #item {
+      text-align: center;
+      * {
+        min-width: 30%;
+      }
+      input[type="text"] {
+        border-radius: 5px 0 0 5px;
+      }
+      input[type="button"] {
+        min-width: 30px;
+        min-height: 30px;
+        border-radius: 0 5px 5px 0;
+      }
+    }
+  }
+  #chart {
+    position: relative;
+    display: inline-block;
+    width: 50%;
+  }
+}
+@media (max-width: 770px) {
+  .show {
+    text-align: center;
+    #message {
+      position: relative;
+      width: 100%;
+      padding: 3% 0;
+    }
+    #chart {
+      width: 100%;
+    }
+  }
+}
+</style>

@@ -7,18 +7,19 @@
     <option :disabled="true" value="">选择一项投票</option>
     <option v-for="(v, k) in data.item" :value="v.name" :key="k">{{v.name}}</option>
   </select>
-  <p id="item" v-if="this.$store.state.user">
-    <input type="text" v-modle="toadd" placeholder="对选项不满意?添加+"/>
-    <input type="button" value="+"/>
+  <p id="item" v-if="this.$store.state">
+    <input type="text" v-model.trim="toadd" placeholder="对选项不满意?添加+"/>
+    <input type="button" value="+" :disabled="!toadd" @click="add"/>
   </p>
   <p><input class="btn btn-primary" type="button" value="submit" @click="updateChart" :disabled="!sel"/></p>
   <p><a ref="share" class="qcShareQQDiv" href="javascript:void(0)" target="_blank">分享到QQ</a></p>
 
-<script ref="src" src="http://connect.qq.com/widget/loader/loader.js" widget="shareqq" charset="utf-8"></script>
+<script ref="src" src="" widget="shareqq" charset="utf-8"></script>
 </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   props: ['msg'],
   data () {
@@ -31,11 +32,21 @@ export default {
   methods: {
     updateChart () {
       this.$root.$emit('updateChart', this.sel)
+    },
+    async add () {
+      let toadd = this.toadd
+      let user = this.$store.state.user
+      try {
+        await axios.post(window.location.origin + '/api/add', { user, toadd })
+      } catch (e) {
+        alert(e.message)
+      }
+      this.toadd = ''
     }
   },
   mounted () {
     var p = {
-      url: encodeURIComponent(location.href), /* 获取URL，可加上来自分享到QQ标识，方便统计 */
+      url: encodeURIComponent(window.location.href), /* 获取URL，可加上来自分享到QQ标识，方便统计 */
       desc: '投票分享', /* 分享理由(风格应模拟用户对话),支持多分享语随机展现（使用|分隔） */
       title: '投票分享', /* 分享标题(可选) */
       summary: '投票分享', /* 分享摘要(可选) */

@@ -1,15 +1,19 @@
 import axios from 'axios'
 export const state = () => ({
   user: null,
-  dt: {}
+  routes: null,
+  dt: null
 })
 
 export const mutations = {
-  ADD_LIST (state, votes) {
-    state.dt = votes
+  SET_ROUTE (state, routes) {
+    state.routes = routes
   },
   SET_UESR (state, user) {
     state.user = user
+  },
+  ADD_LIST (state, dat) {
+    state.dt = dat
   }
 }
 

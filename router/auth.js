@@ -5,7 +5,7 @@ router.post('/login', (req, res) => {
     req.session.user = 'admin'
     res.json({ ok: true })
   } else {
-    res.status(401).json({ msg: 'error' })
+    res.status(401).json({ ok: false })
   }
 })
 

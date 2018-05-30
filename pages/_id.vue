@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import PanelComponent from '~/components/panel.vue'
 import HighchartsComponent from '~/components/HighchartsComponent.vue'
 import { ObjectID } from 'mongodb'
@@ -63,8 +64,17 @@ export default {
     }
   },
   methods: {
-    updateChart (title) {
-      this.$refs.hc.chart.series[0].addPoint([title, Math.random() * 600])
+    async updateChart (title) {
+      let id = this.data._id
+      let user = this.$store.state.user
+      let votefor = title
+      try {
+        await axios.post(window.location.origin + '/api/vote', { id, user, votefor })
+        alert('投票成功')
+        window.location.reload()
+      } catch (e) {
+        alert(e.response.data.msg || e.message)
+      }
     }
   },
   created () {

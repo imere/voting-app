@@ -11,7 +11,7 @@
     <input type="text" v-model.trim="toadd" placeholder="对选项不满意?添加+"/>
     <input type="button" value="+" :disabled="!toadd" @click="add"/>
   </p>
-  <p><input class="btn btn-primary" type="button" value="submit" @click="updateChart" :disabled="!sel"/></p>
+  <p><input class="btn btn-primary" type="button" value="submit" @click.once="updateChart" :disabled="!sel"/></p>
   <p><a ref="share" class="qcShareQQDiv" href="javascript:void(0)" target="_blank">分享到QQ</a></p>
 
 <script ref="src" src="" widget="shareqq" charset="utf-8"></script>
@@ -34,12 +34,17 @@ export default {
       this.$root.$emit('updateChart', this.sel)
     },
     async add () {
+      let id = this.$route.params.id
       let toadd = this.toadd
       let user = this.$store.state.user
+      if (!id || !toadd || !user) {
+        return alert('Request Faild')
+      }
       try {
-        await axios.post(window.location.origin + '/api/add', { user, toadd })
+        await axios.post(window.location.origin + '/api/add', { user, id, toadd })
+        alert('添加成功')
       } catch (e) {
-        alert(e.message)
+        return alert(e.data.msg || e.message)
       }
       this.toadd = ''
     }

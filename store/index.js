@@ -6,14 +6,14 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_ROUTE (state, routes) {
+  SET_ROUTE: function (state, routes) {
     state.routes = routes
   },
-  SET_UESR (state, user) {
-    state.user = user
-  },
-  ADD_LIST (state, dat) {
+  ADD_LIST: function (state, dat) {
     state.dt = dat
+  },
+  SET_USER: function (state, user) {
+    state.user = user
   }
 }
 
@@ -25,7 +25,7 @@ export const actions = {
   },
   async login ({ commit }, { user, pass }) {
     try {
-      const { data } = await axios.post('/login', { user, pass })
+      let { data } = await axios.post('/auth/login', { user, pass })
       commit('SET_USER', data)
     } catch (e) {
       if (e.response && e.response.status === 401) {
@@ -35,7 +35,7 @@ export const actions = {
     }
   },
   async logout ({ commit }) {
-    await axios.post('/logout')
+    await axios.post('/auth/logout')
     commit('SET_USER', null)
   }
 }

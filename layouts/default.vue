@@ -6,25 +6,22 @@
 <![endif]-->
 
 <div class="fixed">
-<div class="box">
   <form>
     <fieldset>
     <div class="t">
-      注册/登录<span id="close" class="close">×</span>
+      注册/登录<span id="close" class="close" @click="clear">×</span>
     </div>
       <div class="m">
-      <div>用户名: <input type="text" v-model.trim="user"/></div>
-      <div>密码: <input type="password" v-model.trim="pass"/></div>
+      <div>用户名: <input type="text" v-model.trim="user" @keyup.enter="login"/></div>
+      <div>密码: <input type="password" v-model.trim="pass" @keyup.enter="login"/></div>
       </div>
       <div class="b">
-        <button type="button" @click="reg" >注册</button>
-        <button type="button" @click="log">登录</button>
+        <button type="button" @click="register" >注册</button>
+        <button type="button" @click="login">登录</button>
       </div>
       </fieldset>
   </form>
 </div>
-</div>
-<script src="/js/logreg.js"></script>
 
 <header class="t-header">
   <!--div class="search">
@@ -35,8 +32,11 @@
     <li v-if="$store.state.user">
       <a href="javascript:void(0)">{{ $store.state.user }}</a>
     </li>
+    <li v-if="$store.state.user">
+      <a @click="logout">退出</a>
+    </li>
     <li v-else>
-      <a id="login">登录</a>
+      <a id="logreg">登录</a>
     </li>
   </ul>
 </header>
@@ -56,11 +56,11 @@
   </div>
 </footer>
 
+<script src="/js/logreg.js"></script>
 </div>
 </template>
 
 <script>
-// import axios from 'axios'
 export default {
   data () {
     return {
@@ -69,11 +69,28 @@ export default {
     }
   },
   methods: {
-    reg () {
-      console.log(this.user)
+    clear () {
+      this.user = ''
+      this.pass = ''
     },
-    log () {
-      console.log(this.user)
+    async register () {
+      //
+    },
+    async login () {
+      try {
+        await this.$store.dispatch('login', { user: this.user, pass: this.pass })
+        window.location.reload()
+      } catch (e) {
+        alert(e.message)
+      }
+    },
+    async logout () {
+      try {
+        await this.$store.dispatch('logout')
+        window.location.reload()
+      } catch (e) {
+        alert(e.message)
+      }
     }
   },
   computed: {

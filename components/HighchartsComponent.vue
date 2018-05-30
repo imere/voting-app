@@ -10,9 +10,11 @@ export default {
   data () {
     let opts = {}
     Object.assign(opts, Options)
-    opts.series[0].data = this.msg.item.map((v, i, arr) => {
-      return { name: v.name, y: v.count }
-    })
+    if (this.msg.item) {
+      opts.series[0].data = this.msg.item.map((v, i, arr) => {
+        return { name: v.name, y: v.count }
+      })
+    }
     return {
       chart: null,
       options: opts

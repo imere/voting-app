@@ -3,6 +3,64 @@ $secondary: #d0d0d0;
 $headerH: 4rem;
 $listBorder: #cccccc;
 $footerH: 5rem;
+.fixed {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 12%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.6);
+  .box {
+    z-index: 2000;
+    form {
+      margin: 0 auto;
+      max-width: 50%;
+      background-color: rgba(200, 200, 200, 1);
+      border-radius: 5px;
+      text-align: center;
+      fieldset {
+        border-width: 0;
+        div {
+          margin: 20px auto;
+          input {
+            display: inline-block;
+            margin: 20px auto 0;
+            width: 50%;
+          }
+          &.t {
+            position: relative;
+            .close {
+              position: absolute;
+              right: 30px;
+              font-size: 30px;
+              opacity: 1;
+              &:hover {
+                opacity: 0.3;
+              }
+            }
+          }
+          &.m {
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+          }
+          &.b {
+            display: flex;
+            justify-content: space-around;
+            button {
+              flex-grow: 1;
+              max-width: 20%;
+              background-color: $primary;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 [v-cloak] {
   display: none !important;
 }
@@ -110,8 +168,12 @@ li {
   height: $footerH;
   padding: 0.5rem 2%;
   text-align: center;
+  overflow: hidden;
   a {
     display: inline;
+  }
+  p {
+    margin: 5px 0;
   }
 }
 
@@ -120,11 +182,16 @@ li {
 }
 
 @media (max-width: 770px) {
-  .t-header {
-    font-size: 1.1rem;
-    height: $headerH*9/10;
-    .h-nav {
-      margin-right: 0.3rem;
-    }
+.t-header {
+  font-size: 1.1rem;   height: $headerH*9/10;
+  .h-nav {
+    margin-right: 0.3rem;
   }
+}
+.fixed {
+  form {
+    margin: 0 auto;
+    max-width: 95%;
+  }
+}
 }

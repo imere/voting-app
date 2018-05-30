@@ -5,17 +5,38 @@
 <script src="https://img.hcharts.cn/highcharts/modules/oldie.js"></script>
 <![endif]-->
 
+<div class="fixed">
+<div class="box">
+  <form>
+    <fieldset>
+    <div class="t">
+      注册/登录<span id="close" class="close">×</span>
+    </div>
+      <div class="m">
+      <div>用户名: <input type="text" v-model.trim="user"/></div>
+      <div>密码: <input type="password" v-model.trim="pass"/></div>
+      </div>
+      <div class="b">
+        <button type="button" @click="reg" >注册</button>
+        <button type="button" @click="log">登录</button>
+      </div>
+      </fieldset>
+  </form>
+</div>
+</div>
+<script src="/js/logreg.js"></script>
+
 <header class="t-header">
-  <div class="search">
+  <!--div class="search">
     <input class="searchbar" type="text" placeholder="Type To Search" v-model.trim="filter" />
-  </div>
+  </div-->
   <ul class="h-nav">
-    <li><a href="/">Home</a></li>
+    <li><a href="/">主页</a></li>
     <li v-if="$store.state.user">
       <a href="javascript:void(0)">{{ $store.state.user }}</a>
     </li>
     <li v-else>
-      <a href="javascript:void(0)">Login</a>
+      <a id="login">登录</a>
     </li>
   </ul>
 </header>
@@ -39,10 +60,20 @@
 </template>
 
 <script>
+// import axios from 'axios'
 export default {
   data () {
     return {
-      filter: ''
+      user: '',
+      pass: ''
+    }
+  },
+  methods: {
+    reg () {
+      console.log(this.user)
+    },
+    log () {
+      console.log(this.user)
     }
   },
   computed: {

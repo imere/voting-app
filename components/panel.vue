@@ -7,7 +7,7 @@
     <option :disabled="true" value="">选择一项投票</option>
     <option v-for="(v, k) in data.item" :value="v.name" :key="k">{{v.name}}</option>
   </select>
-  <p id="item" v-if="this.$store.state">
+  <p id="item" v-if="this.$store.state.user">
     <input type="text" v-model.trim="toadd" placeholder="对选项不满意?添加+"/>
     <input type="button" value="+" :disabled="!toadd" @click="add"/>
   </p>

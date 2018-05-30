@@ -9,7 +9,8 @@ module.exports = {
       {hid: 'description', name: 'description', content: 'voting system, 投票系统'}
     ],
     script: [
-      {src: 'https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js'}
+      {src: 'https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js'},
+      {src: 'https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js'}
       // {src: "https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/highcharts.js"},
     ],
     link: [
@@ -19,7 +20,7 @@ module.exports = {
   },
   loading: '~/components/loading.vue',
   css: [
-    {src: '~assets/css/main.scss', lang: 'scss'}
+    {src: '~/assets/css/main.scss', lang: 'scss'}
   ],
   rernder: {
     bundleRenderer: {
@@ -57,7 +58,7 @@ module.exports = {
       saveUninitialized: false,
       cookie: { maxAge: 60000 }
     }),
-    '~/router'
+    '~/router/index.js'
   ],
   build: {
     vendor: ['axios'],

@@ -2,7 +2,7 @@
 <div class="personal">
 
   <div>
-    <h5>用户名: {{$route.params.user}}</h5>
+    <h5>用户名: {{$store.state.user}}</h5>
   </div>
 
   <tabs :data='data'/>
@@ -25,10 +25,7 @@ export default {
         owner: params.user
       }, (err, data) => {
         if (err) {
-          reject(error({ message: 'Internal Error', stasusCode: 500 }))
-        }
-        if (!data.length) {
-          error({ stasusCode: 404, message: 'Not Found' })
+          reject(error({ message: 'Internal Error', statusCode: 500 }))
         }
         resolve(dat = data)
       }, {

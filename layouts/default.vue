@@ -29,8 +29,8 @@
   </div-->
   <ul class="h-nav">
     <li><a href="/">主页</a></li>
-    <li v-if="$store.state.user">
-      <a href="javascript:void(0)">{{ $store.state.user }}</a>
+    <li v-if="$store.state.user && !/^\/message\/[a-zA-Z]+/.test($route.fullPath)">
+      <a :href="'/message/'+$store.state.user">{{ $store.state.user }}</a>
     </li>
     <li v-if="$store.state.user">
       <a @click="logout">退出</a>
@@ -49,9 +49,6 @@
   <div>
     <p>
       contact: <a href="mailto:838914662@qq.com">838914662@qq.com</a>
-    </p>
-    <p>
-      open-source: <a href="https://github.com/imere/voting-app">https://github.com/imere/voting-app</a>
     </p>
   </div>
 </footer>

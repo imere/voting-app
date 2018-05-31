@@ -1,6 +1,5 @@
 const express = require('express')
-const {Nuxt, Builder} = require('nuxt')
-// require('../data/mongo.js').init()
+const { Nuxt, Builder } = require('nuxt')
 
 const HOST = process.env.HOST || '0.0.0.0'
 const PORT = process.env.PORT || 8000

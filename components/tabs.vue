@@ -5,25 +5,48 @@
     <button v-for="(v, i) in tabs" :key="i" @click="current = v" class="btn" :class="{ active: current === v }">{{v}}</button>
   </div>
   <section v-if="current === tabs[0]">
-    <div v-for="(v, i) in data" :key="i">
-      <a :href="'/'+v._id">{{v.title}}</a>
-      <button type="button">×</button>
+    <div v-if="data.length">
+      <div v-for="(v, i) in data" :key="i">
+        <a :href="'/'+v._id">{{v.title}}</a>
+        <button type="button" @click="del">×</button>
+      </div>
+    </div>
+    <div v-else>
+      <p>没有数据</p>
     </div>
   </section>
   <section v-if="current === tabs[1]">
-    <div v-for="(v, i) in data" :key="i"><a :href="'/'+v._id">{{v.title}}</a></div>
+    <div v-if="data.votefor">
+      <div v-for="(v, i) in data" :key="i"><a :href="'/'+v._id">{{v.title}}</a></div>
+    </div>
+    <div v-else>
+      <p>没有数据</p>
+    </div>
   </section>
 
 </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   props: ['data'],
   data () {
     return {
       current: '我的',
       tabs: ['我的', '已投']
+    }
+  },
+  methods: {
+    async del (e) {
+      let user = this.$store.state.user
+      let id = /^[\s\S]+\/([a-zA-Z0-9]+)$/.exec(e.currentTarget.parentNode.children[0].href)[1]
+      try {
+        await axios.post(window.location.origin + '/api/del', { user, id })
+        window.location.reload()
+      } catch (e) {
+        alert(e.data.msg || e.message)
+      }
     }
   }
 }
@@ -50,13 +73,14 @@ $info: #007bff;
   }
 }
 section {
+  position: relative;
   text-align: center;
   border: 1px solid $info;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 15px 0;
-  overflow: auto;
+  overflow: hidden;
   div {
     width: 50%;
     min-width: 33%;
@@ -66,7 +90,15 @@ section {
       border-radius: 2px;
       border-style: none;
     }
+    p {
+      position: absolute;
+      top: 25%;
+      left: 0;
+      width: 100%;
+      margin: 0;
+    }
     a {
+      display: inline-table;
       max-width: 80%;
       max-height: 30px;
       background-color: $secondary;

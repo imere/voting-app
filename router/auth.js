@@ -1,11 +1,25 @@
 const router = require('express').Router()
+const users = require('../data/users')
 
 router.post('/login', (req, res) => {
-  if (req.body.user === 'admin' && req.body.pass === 'pass') {
-    req.session.user = 'admin'
-    res.json({ ok: true })
+  let user = req.body.user
+  let pass = req.body.pass
+  if (!user || !pass) {
+    res.status(400).json({ ok: false })
   } else {
-    res.status(401).json({ ok: false })
+    users.get({
+      user: user,
+      pass: pass
+    }, (err, dat) => {
+      if (err) {
+        res.status(500).json({ ok: false })
+      } else if (dat.length) {
+        req.session.user = user
+        res.json({ ok: true })
+      } else {
+        res.status(401).json({ msg: '用户或密码错误' })
+      }
+    })
   }
 })
 

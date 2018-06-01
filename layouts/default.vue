@@ -8,18 +8,18 @@
 <div class="fixed">
   <form>
     <fieldset>
-    <div class="t">
-      注册/登录<span id="close" class="close" @click="clear">×</span>
-    </div>
+      <div class="t">
+        注册/登录<span id="close" class="close" @click="clear">×</span>
+      </div>
       <div class="m">
-      <div>用户名: <input type="text" v-model.trim="user" @keyup.enter="login"/></div>
-      <div>密码: <input type="password" v-model.trim="pass" @keyup.enter="login"/></div>
+        <div>用户名: <input type="text" v-model.trim="user" @keyup.enter="login" placeholder="5-10位字母数字" /></div>
+        <div>密码: <input type="password" v-model.trim="pass" @keyup.enter="login" placeholder="6-15位字母数字" /></div>
       </div>
       <div class="b">
         <button type="button" @click="register" >注册</button>
         <button type="button" @click="login">登录</button>
       </div>
-      </fieldset>
+    </fieldset>
   </form>
 </div>
 
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
@@ -71,14 +72,30 @@ export default {
       this.pass = ''
     },
     async register () {
-      //
+      let user = this.user
+      let pass = this.pass
+      if (!user || !pass) {
+        return alert('不能为空')
+      } else {
+        if (user.length > 10 || user.length < 5) {
+          return alert('用户名格式不正确')
+        }
+        if (pass.length > 15 || pass.length < 6) {
+          return alert('密码格式不正确')
+        }
+      }
+      try {
+        await axios.post(window.location.origin + '/user/add', { user, pass })
+      } catch (e) {
+        alert(e.data.msg || e.message)
+      }
     },
     async login () {
       try {
         await this.$store.dispatch('login', { user: this.user, pass: this.pass })
         window.location.reload()
       } catch (e) {
-        alert(e.message)
+        alert(e.data.message || e.message)
       }
     },
     async logout () {

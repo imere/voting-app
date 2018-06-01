@@ -74,52 +74,62 @@ $info: #007bff;
 }
 section {
   position: relative;
-  text-align: center;
   border: 1px solid $info;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   padding: 15px 0;
-  overflow: hidden;
-  div {
-    width: 50%;
-    min-width: 33%;
-    padding: 10px;
+  &>div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
     overflow: hidden;
-    * {
-      border-radius: 2px;
-      border-style: none;
-    }
-    p {
-      position: absolute;
-      top: 25%;
-      left: 0;
-      width: 100%;
-      margin: 0;
-    }
-    a {
-      display: inline-table;
-      max-width: 80%;
-      max-height: 30px;
-      background-color: $secondary;
-      text-overflow: ellipsis;
-      &:hover {
-        background-color: $primary;
+    div {
+      position: relative;
+      width: 50%;
+      min-width: 33%;
+      padding: 10px;
+      overflow: hidden;
+      * {
+        border-radius: 2px;
+        border-style: none;
       }
-    }
-    button {
-      outline: none;
-      background-color: $warning;
-      width: 20%;
-      max-width: 30px;
-      max-height: 30px;
-      float: right;
-      cursor: pointer;
-      &:hover {
-        opacity: 0.5;
+      p {
+        position: absolute;
+        top: 25%;
+        left: 0;
+        width: 100%;
+        margin: 0;
       }
-      &:active {
-        background-color: $danger;
+      a {
+        display: inline-table;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        max-width: 80%;
+        max-height: 30px;
+        background-color: $secondary;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 1;
+        &:hover {
+          background-color: $primary;
+        }
+      }
+      button {
+        position: absolute;
+        top: 25%;
+        right: 10%;
+        outline: none;
+        background-color: $warning;
+        width: 13%;
+        max-width: 30px;
+        max-height: 30px;
+        float: right;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.5;
+        }
+        &:active {
+          background-color: $danger;
+        }
       }
     }
   }

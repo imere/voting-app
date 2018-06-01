@@ -17,6 +17,9 @@ router.use('/auth', auth)
 const api = require('./api')
 router.use('/api', api)
 
+const user = require('./user')
+router.use('/user', user)
+
 module.exports = {
   path: '/',
   handler: router

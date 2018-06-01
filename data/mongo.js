@@ -2,19 +2,6 @@ const mgc = require('mongodb').MongoClient
 
 const uri = 'mongodb://127.0.0.1:27017'
 /* eslint-disable */
-/* "owner" : "",
-"title" : "",
-"time" : "",
-"item" : [
-  {
-    "name" : "",
-    "count" : 0
-  }
-],
-"voteby" : {
-"auth" : false,
-"user" : [ ],
-"ip" : [ ] */
 const init = () => {
   mgc.connect(uri, { useNewUrlParser: true },function (err, client) {
     if (err) {

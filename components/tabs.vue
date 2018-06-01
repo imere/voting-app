@@ -39,10 +39,6 @@ export default {
   },
   methods: {
     async del (e) {
-      let cf = confirm('确认删除?')
-      if (!cf) {
-        return
-      }
       let user = this.$store.state.user
       let id = /^[\s\S]+\/([a-zA-Z0-9]+)$/.exec(e.currentTarget.parentNode.children[0].href)[1]
       try {
@@ -78,54 +74,52 @@ $info: #007bff;
 }
 section {
   position: relative;
+  text-align: center;
   border: 1px solid $info;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   padding: 15px 0;
-  &>div {
-    width: 100%;
-    text-align: center;
+  overflow: hidden;
+  div {
+    width: 50%;
+    min-width: 33%;
+    padding: 10px;
     overflow: hidden;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    div {
-      display: inline-block;
-      width: 50%;
-      min-width: 33%;
-      padding: 10px;
-      overflow: hidden;
-      * {
-        border-radius: 2px;
-        border-style: none;
+    * {
+      border-radius: 2px;
+      border-style: none;
+    }
+    p {
+      position: absolute;
+      top: 25%;
+      left: 0;
+      width: 100%;
+      margin: 0;
+    }
+    a {
+      display: inline-table;
+      max-width: 80%;
+      max-height: 30px;
+      background-color: $secondary;
+      text-overflow: ellipsis;
+      &:hover {
+        background-color: $primary;
       }
-      p {
-        position: absolute;
-        top: 25%;
-        left: 0;
-        width: 100%;
-        margin: 0;
+    }
+    button {
+      outline: none;
+      background-color: $warning;
+      width: 20%;
+      max-width: 30px;
+      max-height: 30px;
+      float: right;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.5;
       }
-      a {
-        max-width: 80%;
-        background-color: $secondary;
-        text-overflow: ellipsis;
-        &:hover {
-          background-color: $primary;
-        }
-      }
-      button {
-        outline: none;
-        background-color: $warning;
-        width: 20%;
-        max-width: 30px;
-        max-height: 30px;
-        float: right;
-        cursor: pointer;
-        &:hover {
-          opacity: 0.5;
-        }
-        &:active {
-          background-color: $danger;
-        }
+      &:active {
+        background-color: $danger;
       }
     }
   }

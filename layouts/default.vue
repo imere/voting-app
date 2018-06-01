@@ -84,7 +84,7 @@ export default {
     async logout () {
       try {
         await this.$store.dispatch('logout')
-        window.location.reload()
+        window.location.href = '/'
       } catch (e) {
         alert(e.message)
       }

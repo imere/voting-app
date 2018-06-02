@@ -86,8 +86,10 @@ export default {
       }
       try {
         await axios.post(window.location.origin + '/user/add', { user, pass })
+        alert('注册成功')
+        window.location.reload()
       } catch (e) {
-        alert(e.data.msg || e.message)
+        alert(e.message)
       }
     },
     async login () {
@@ -95,13 +97,13 @@ export default {
         await this.$store.dispatch('login', { user: this.user, pass: this.pass })
         window.location.reload()
       } catch (e) {
-        alert(e.data.message || e.message)
+        alert(e.message)
       }
     },
     async logout () {
       try {
         await this.$store.dispatch('logout')
-        window.location.reload()
+        window.location.href = '/'
       } catch (e) {
         alert(e.message)
       }

@@ -14,6 +14,9 @@ router.use((req, res, next) => {
 const auth = require('./auth')
 router.use('/auth', auth)
 
+const poll = require('./poll')
+router.use('/poll', poll)
+
 const api = require('./api')
 router.use('/api', api)
 

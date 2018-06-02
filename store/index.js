@@ -29,7 +29,10 @@ export const actions = {
       commit('SET_USER', data)
     } catch (e) {
       if (e.response && e.response.status === 401) {
-        throw new Error('Bad credentials')
+        throw new Error('认证错误')
+      }
+      if (e.response && e.response.status === 400) {
+        throw new Error('用户已存在')
       }
       throw e
     }

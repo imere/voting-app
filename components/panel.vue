@@ -30,6 +30,9 @@ export default {
     }
   },
   methods: {
+    start () {
+      console.log(this.$nuxt.$refs.loading)
+    },
     updateChart () {
       this.$root.$emit('updateChart', this.sel)
     },

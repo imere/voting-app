@@ -30,6 +30,22 @@ const users = {
     })
   },
 
+  upd: (filter, update, cb, options = {}) => {
+    mgc.connect(uri, { useNewUrlParser: true }, function (err, client) {
+      if (err) {
+        return cb(err)
+      }
+      client.db('voting').collection('users').findOneAndUpdate(filter, update, options, (err, res) => {
+        if (err) {
+          return cb(err)
+        }
+        return cb(null, res)
+      })
+      client.close()
+    })
+  },
+
+
   del: (filter, cb, options = {}) => {
     mgc.connect(uri, { useNewUrlParser: true }, function (err, client) {
       if (err) {

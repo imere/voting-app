@@ -12,6 +12,7 @@
 
 <script>
 import Tabs from '~/components/tabs.vue'
+import users from '~/data/users'
 import votes from '~/data/mongo'
 export default {
   components: {
@@ -19,7 +20,8 @@ export default {
   },
   middleware: ['auth'],
   async asyncData ({ store, params, error }) {
-    let dat = []
+    let host = null
+    let votefor = null
     await new Promise((resolve, reject) => {
       votes.get({
         owner: params.user
@@ -27,7 +29,7 @@ export default {
         if (err) {
           reject(error({ message: 'Internal Error', statusCode: 500 }))
         }
-        resolve(dat = data)
+        resolve(host = data)
       }, {
         projection: {
           _id: 1,
@@ -35,8 +37,26 @@ export default {
         }
       })
     })
+    await new Promise((resolve, reject) => {
+      users.get({
+        user: params.user
+      }, (err, data) => {
+        if (err) {
+          reject(error({ message: 'Internal Error', statusCode: 500 }))
+        }
+        resolve(votefor = data)
+      }, {
+        projection: {
+          _id: 0,
+          votefor: 1
+        }
+      })
+    })
     return {
-      data: dat
+      data: {
+        host: host,
+        votefor: votefor
+      }
     }
   }
 }

@@ -1,18 +1,19 @@
 <template>
   <div class="loading-page" v-if="loading">
     <p>Loading.....</p>
+    <p>长时间无反应请刷新</p>
   </div>
 </template>
 
 <script>
 module.exports = {
   data: () => ({
-    loading: false
+    loading: true
   }),
+  mounted () {
+    this.loading = false
+  },
   methods: {
-    start () {
-      this.loading = true
-    },
     finish () {
       this.loading = false
     }
@@ -27,7 +28,7 @@ module.exports = {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(150, 150, 150, 1);
     text-align: center;
     padding-top: 200px;
     font-size: 30px;

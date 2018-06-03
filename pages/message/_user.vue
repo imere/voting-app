@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { ObjectID } from 'mongodb'
 import Tabs from '~/components/tabs.vue'
 import users from '~/data/users'
 import votes from '~/data/mongo'
@@ -18,7 +19,7 @@ export default {
   components: {
     Tabs
   },
-  middleware: ['auth'],
+  // middleware: ['auth'],
   async asyncData ({ store, params, error }) {
     let host = null
     let votefor = null
@@ -43,8 +44,24 @@ export default {
       }, (err, data) => {
         if (err) {
           reject(error({ message: 'Internal Error', statusCode: 500 }))
+        } else {
+          votes.get({
+            _id: {
+              $in: data[0].votefor.map(v => ObjectID(v))
+            }
+          }, (err, dat) => {
+            if (err) {
+              reject(error({ message: 'Internal Error', statusCode: 500 }))
+            } else {
+              resolve(votefor = dat)
+            }
+          }, {
+            projection: {
+              _id: 1,
+              title: 1
+            }
+          })
         }
-        resolve(votefor = data)
       }, {
         projection: {
           _id: 0,

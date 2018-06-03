@@ -84,9 +84,9 @@ router.post('/vote', (req, res) => {
               } else {
 
                 users.upd({
-                  user: req.session.user
+                  user: req.session.user || req.body.user
                 }, {
-                  $push: {
+                  $addToSet: {
                     votefor: req.body.id
                   }
                 }, (err, dat) => {

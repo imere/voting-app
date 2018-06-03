@@ -1,9 +1,5 @@
 const router = require('express').Router()
 const users = require('../data/users')
-const userMin = 5
-const userMax = 10
-const passMin = 6
-const passMax = 15
 
 router.post('/add', (req, res) => {
   let user = req.body.user
@@ -11,12 +7,11 @@ router.post('/add', (req, res) => {
   let email = req.body.email
   if (!user || !pass) {
     res.status(400).json({ ok: false })
-  } else if (user.length > userMax ||
-    pass.length > passMax ||
-    !/^[a-zA-Z0-9]{5,10}$/.test(user) ||
-    !/^[a-zA-Z0-9]{6,15}$/.test(pass) ) {
+  } else if (!/^[a-zA-Z0-9]{5,10}$/.test(user) ||
+    !/^[a-zA-Z0-9]{6,15}$/.test(pass)) {
      res.status(400).json({ msg: 'Bad Format' })   
   } else {
+
     users.get({
       user: user
     }, (err, dat) => {
@@ -42,6 +37,7 @@ router.post('/add', (req, res) => {
 
       }
     })
+
   }
 })
 

@@ -27,7 +27,7 @@
     </div>
   </div>
   <section v-if="current === tabs[0]">
-    <div v-if="data.host">
+    <div v-if="data.host.length">
       <div v-for="(v, i) in data.host" :key="i">
         <a :href="'/'+v._id">{{v.title}}</a>
         <button type="button" @click="del">×</button>
@@ -38,9 +38,9 @@
     </div>
   </section>
   <section v-if="current === tabs[1]">
-    <div v-if="data.votefor">
-      <div v-for="(v, i) in data.votefor[0].votefor" :key="i">
-        <a :href="'/'+v">{{v}}</a>
+    <div v-if="data.votefor.length">
+      <div v-for="(v, i) in data.votefor" :key="i">
+        <a :href="'/'+v._id">{{v.title}}</a>
       </div>
     </div>
     <div v-else>
@@ -53,6 +53,7 @@
 
 <script>
 import axios from 'axios'
+// import votes from '~/data/mongo'
 export default {
   props: ['data'],
   head () {

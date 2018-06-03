@@ -1,4 +1,6 @@
 const router = require('express').Router()
+const { ObjectID } = require('mongodb')
+const users = require('../data/users')
 const votes = require('../data/mongo')
 
 router.post('/add', (req, res) => {
@@ -50,7 +52,19 @@ router.post('/del', (req, res) => {
       if (err) {
         res.status(500).json({ ok: false })
       } else {
-        res.json({ ok: true })
+
+        users.upd({}, {
+          $pullAll: {
+            votfor: [req.body.id]
+          }
+        }, (err, dat) => {
+          if (err) {
+            res.status(500).json({ msg: 'Update Faild' })
+          } else {
+            res.json({ ok: true })
+          }
+        })
+
       }
     })
   }

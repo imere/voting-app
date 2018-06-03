@@ -20,9 +20,7 @@ router.post('/add', (req, res) => {
         item: {
           name: req.body.toadd,
           count: 0
-        },
-        'voteby.user': req.body.user,
-        'voteby.ip': ip
+        }
       }
     }, (err, dat) => {
       if (err) {

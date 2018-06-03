@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import votes from '../data/mongo.js'
+import votes from '../data/mongo'
 export default {
   async asyncData ({ store, params, error }) {
     await new Promise((resolve, reject) => {

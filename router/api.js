@@ -19,7 +19,7 @@ router.post('/add', (req, res) => {
       $addToSet: {
         item: {
           name: req.body.toadd,
-          count: 1
+          count: 0
         },
         'voteby.user': req.body.user,
         'voteby.ip': ip
@@ -36,6 +36,8 @@ router.post('/add', (req, res) => {
 
 
 router.post('/vote', (req, res) => {
+  /* may lost session */
+  let userTemp = req.session.user
   if (!req.body.votefor || !req.body.id) {
     res.status(400).json({ msg: 'Bad Request' })
   } else {
@@ -107,6 +109,7 @@ router.post('/vote', (req, res) => {
     })
 
   }
+  req.session.user = userTemp
 })
 
 module.exports = router

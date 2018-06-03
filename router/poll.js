@@ -55,7 +55,7 @@ router.post('/del', (req, res) => {
 
         users.upd({}, {
           $pullAll: {
-            votfor: [req.body.id]
+            votefor: [req.body.id]
           }
         }, (err, dat) => {
           if (err) {

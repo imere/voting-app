@@ -30,9 +30,6 @@ export default {
     }
   },
   methods: {
-    start () {
-      console.log(this.$nuxt.$refs.loading)
-    },
     updateChart () {
       this.$root.$emit('updateChart', this.sel)
     },
@@ -45,9 +42,9 @@ export default {
       }
       try {
         await axios.post(window.location.origin + '/api/add', { user, id, toadd })
-        alert('添加成功')
+        window.location.reload()
       } catch (e) {
-        return alert(e.data.msg || e.message)
+        return alert(e.message)
       }
       this.toadd = ''
     }

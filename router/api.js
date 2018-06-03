@@ -36,8 +36,6 @@ router.post('/add', (req, res) => {
 
 
 router.post('/vote', (req, res) => {
-  /* may lost session */
-  let userTemp = req.session.user
   if (!req.body.votefor || !req.body.id) {
     res.status(400).json({ msg: 'Bad Request' })
   } else {
@@ -109,7 +107,6 @@ router.post('/vote', (req, res) => {
     })
 
   }
-  req.session.user = userTemp
 })
 
 module.exports = router

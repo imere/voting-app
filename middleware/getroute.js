@@ -12,7 +12,4 @@ export default async function ({ req, store, route, error }) {
       }
     })
   })
-  if (req.session && req.session.user) {
-    store.commit('SET_USER', req.session.user)
-  }
 }

@@ -81,7 +81,7 @@ export default {
         await axios.post(window.location.origin + '/poll/add', { user, title, opts })
         this.title = ''
         this.opts = {}
-        alert('操作成功')
+        window.location.reload()
       } catch (e) {
         alert(e.message)
       }

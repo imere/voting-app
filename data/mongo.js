@@ -1,6 +1,6 @@
 const mgc = require('mongodb').MongoClient
 
-const uri = 'mongodb://127.0.0.1:27017'
+const uri = process.env.vuri || 'mongodb://127.0.0.1:27017'
 /* eslint-disable */
 const votes = {
   get: (filter, cb, options = {}) => {

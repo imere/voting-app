@@ -4,10 +4,7 @@
   "description": "",
   "main": "index.js",
   "config": {
-    "nuxt": {
-      "host": "0.0.0.0",
-      "port": "8000"
-    }
+    "npm": "6.1.0"
   },
   "scripts": {
     "build": "nuxt build",
@@ -39,7 +36,7 @@
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.1.0",
     "node-sass": "^4.9.0",
-    "sass-loader": "^7.0.1",
+    "sass-loader": "^7.0.2",
     "webpack": "^3.12.0"
   }
 }

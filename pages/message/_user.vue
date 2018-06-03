@@ -19,7 +19,7 @@ export default {
   components: {
     Tabs
   },
-  // middleware: ['auth'],
+  middleware: ['auth'],
   async asyncData ({ store, params, error }) {
     let host = null
     let votefor = null

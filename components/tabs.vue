@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="bot-field">
-          <button id="add" type="button" @click="addCount">添加选项</button>
+          <button id="add" type="button" @click.stop.prevent="addCount">添加选项</button>
           <button type="button" @click="addPoll">确定</button>
         </div>
       </div>
@@ -53,16 +53,8 @@
 
 <script>
 import axios from 'axios'
-// import votes from '~/data/mongo'
 export default {
   props: ['data'],
-  head () {
-    return {
-      script: [
-        { src: '/js/up.js' }
-      ]
-    }
-  },
   data () {
     return {
       current: '我的',
@@ -80,7 +72,9 @@ export default {
       let user = this.$store.state.user
       let title = this.title
       let opts = this.opts
-      if (!user || !title || !Object.keys(opts).length) {
+      if (!user) {
+        return alert('登录重试')
+      } else if (!title || !Object.keys(opts).length) {
         return alert('确认有标题且至少一个选项')
       }
       try {

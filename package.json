@@ -10,8 +10,6 @@
     }
   },
   "scripts": {
-    "wdev": "nuxt build && backpack build",
-    "wstart": "cross-env NODE_ENV=production node build/main.js",
     "build": "nuxt build",
     "start": "nuxt start",
     "heroku-postbuild": "npm run build"
@@ -42,6 +40,6 @@
     "eslint-plugin-standard": "^3.1.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
-    "webpack": "^4.10.2"
+    "webpack": "^3.12.0"
   }
 }

@@ -1,6 +1,7 @@
 <template>
   <div class="loading-page" v-if="loading">
     <p>Loading.....</p>
+    <p>浏览器内打开</p>
     <p>长时间无反应请刷新</p>
   </div>
 </template>

@@ -7,9 +7,7 @@ export default async function ({ req, store, route, error }) {
       }
       resolve(store.commit('SET_ROUTE', dat))
     }, {
-      projection: {
-        _id: 1
-      }
+      _id: 1
     })
   })
 }

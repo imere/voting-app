@@ -26,7 +26,7 @@ router.post('/add', (req, res) => {
           pass: pass,
           email: email || '',
           lastLogin: '',
-          votefor: ''
+          votefor: []
         }, (err, dat) => {
           if (err) {
             res.status(500).json({ ok: false })

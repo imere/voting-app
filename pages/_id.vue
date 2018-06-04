@@ -48,10 +48,8 @@ export default {
         }
         resolve(dat = data)
       }, {
-        projection: {
-          owner: 0,
-          voteby: 0
-        }
+        owner: 0,
+        voteby: 0
       })
     })
     return {

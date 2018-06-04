@@ -21,10 +21,8 @@ export default {
         }
         resolve(store.commit('ADD_LIST', dat))
       }, {
-        projection: {
-          _id: 1,
-          title: 1
-        }
+        _id: 1,
+        title: 1
       })
     })
     return {

@@ -32,10 +32,8 @@ export default {
         }
         resolve(host = data)
       }, {
-        projection: {
-          _id: 1,
-          title: 1
-        }
+        _id: 1,
+        title: 1
       })
     })
     await new Promise((resolve, reject) => {
@@ -56,17 +54,13 @@ export default {
               resolve(votefor = dat)
             }
           }, {
-            projection: {
-              _id: 1,
-              title: 1
-            }
+            _id: 1,
+            title: 1
           })
         }
       }, {
-        projection: {
-          _id: 0,
-          votefor: 1
-        }
+        _id: 0,
+        votefor: 1
       })
     })
     return {

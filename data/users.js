@@ -3,12 +3,12 @@ const mgc = require('mongodb').MongoClient
 const uri = process.env.uuri || 'mongodb://127.0.0.1:27017'
 /* eslint-disable */
 const users = {
-  get: (filter, cb, options = {}) => {
+  get: (filter, cb, projection = {}) => {
     mgc.connect(uri, { useNewUrlParser: true }, (err, client) => {
       if (err) {
         return cb(err)
       }
-      client.db('voting').collection('users').find(filter, options).toArray((err, res) => {
+      client.db('voting').collection('users').find(filter).project(projection).toArray((err, res) => {
         cb(null, res)
         client.close()
       })

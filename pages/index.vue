@@ -36,13 +36,6 @@ export default {
       }
     }
   }
-  /* generate: {
-    routes: function () {
-      return this.$store.state.dt.map((v, i, arr) => {
-        return '/' + v['_id']
-      })
-    }
-  } */
 }
 </script>
 
